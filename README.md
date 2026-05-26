@@ -38,18 +38,20 @@ Adicione prints em `assets/screenshots/` e referencie aqui:
 - `types/`: tipagens de domínio.
 - `assets/`: logo e imagens estáticas.
 
-## Executar no Android Studio
-
-1. Abra o Android Studio.
-2. Inicie um emulador em `Device Manager`.
-3. No projeto, execute:
+## Rodar projeto (modelo Expo Router)
 
 ```bash
 npm install
-npm run android:studio
+npx expo install expo-router react-native-safe-area-context react-native-screens
+npx expo start
 ```
 
-O Expo detecta o emulador aberto e instala/abre o app automaticamente.
+## Rodar no Android Studio (emulador aberto)
+
+```bash
+npm install
+npx expo start --android
+```
 
 ## NASA APOD
 
