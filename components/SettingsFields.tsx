@@ -6,13 +6,17 @@ export function SettingsInput({
   value,
   onChangeText,
   keyboardType = "numeric",
-  error
+  error,
+  placeholder,
+  secureTextEntry = false
 }: {
   label: string;
   value: string;
   onChangeText: (value: string) => void;
   keyboardType?: "default" | "numeric";
   error?: string;
+  placeholder?: string;
+  secureTextEntry?: boolean;
 }) {
   return (
     <View style={styles.group}>
@@ -22,7 +26,11 @@ export function SettingsInput({
         onChangeText={onChangeText}
         keyboardType={keyboardType}
         style={[styles.input, error ? styles.inputError : undefined]}
+        placeholder={placeholder}
         placeholderTextColor={theme.colors.textMuted}
+        autoCapitalize="none"
+        autoCorrect={false}
+        secureTextEntry={secureTextEntry}
       />
       {error ? <Text style={styles.error}>{error}</Text> : null}
     </View>
@@ -47,6 +55,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingHorizontal: 10,
     paddingVertical: 10,
+    minHeight: 44,
     color: theme.colors.textPrimary,
     backgroundColor: theme.colors.bgSoft
   },

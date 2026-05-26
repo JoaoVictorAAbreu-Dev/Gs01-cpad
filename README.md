@@ -1,14 +1,18 @@
 ﻿# Space Predictive Analytics
 
-<p align="center">
-  <img src="./assets/logo.png" alt="Space Predictive Analytics" width="260" />
-</p>
+## Descrição
 
-Aplicativo mobile com Expo Router para monitoramento espacial com dashboards, alertas por limiar e análise de telemetria simulada.
+Aplicação mobile da Global Solution 2026.1 para monitoramento inteligente de operações espaciais simuladas com dashboards analíticos, alertas automáticos, histórico de missão e apoio à decisão.
 
-## Prints
+## Integrantes
 
-Adicionar imagens em `assets/screenshots/`:
+- João Victor Alves de Abreu - RM: 564946 
+- Luiz Henrique Barbosa Dias - RM: 562399
+
+
+## Prints das Telas
+
+Salvar os prints em `assets/screenshots/`:
 
 - `home.png`
 - `sensores.png`
@@ -16,57 +20,72 @@ Adicionar imagens em `assets/screenshots/`:
 - `comunicacao.png`
 - `alertas.png`
 - `configuracoes.png`
+- `historico.png`
 
-## Requisitos atendidos
+## Funcionalidades
 
-- Expo Router com navegação por tabs e rotas funcionais.
-- 3 dashboards principais: Sensores, Energia e Comunicação.
-- Context API consumida em múltiplas telas.
-- AsyncStorage persistindo limites de alerta e preferências da API NASA.
-- Formulário controlado com validação e feedback de erro/sucesso.
-- Alertas automáticos por limiares críticos (temperatura, bateria, sinal).
-- Interface espacial em dark mode.
-- Código tipado e componentizado.
-- Logo em splash, home, README e ícone do app.
+- Navegação com Expo Router (Tabs + Stack).
+- Dashboards de Sensores, Energia e Comunicação com gráficos em tempo real.
+- Monitoramento orbital com estabilidade e drift.
+- Context API para dados da missão, alertas, histórico e configurações.
+- Persistência via AsyncStorage de limites, preferências e histórico da missão.
+- Formulário validado para configuração de limites e integrações.
+- Sistema de alertas por severidade: baixo, médio, alto e crítico.
+- Notificações locais para eventos críticos (`expo-notifications`).
+- Integração NASA APOD.
+- Interpretação inteligente da missão com IA (Groq/Gemini).
+- Interface futurista em dark mode com cards, ícones e animações suaves.
 
-## Estrutura
+## Tecnologias
 
-- `app/`: rotas e telas (Expo Router).
-- `components/`: componentes reutilizáveis de UI.
-- `context/`: estado global da missão.
-- `hooks/`: hooks de acesso ao contexto.
-- `services/`: simulação, NASA APOD e persistência.
-- `utils/`: tema e regras de alertas.
-- `types/`: contratos de tipos.
-- `assets/`: logo e arquivos estáticos.
+- React Native
+- Expo
+- Expo Router
+- TypeScript
+- Context API
+- AsyncStorage
+- react-native-chart-kit
+- react-native-svg
+- expo-notifications
+- react-native-reanimated
+- expo-linear-gradient
+- @expo/vector-icons
 
-## Como executar (Expo Go)
+## Como Executar
 
 ```bash
 npm install
 npx expo start
 ```
 
-Abra o app Expo Go no celular e escaneie o QR code.
-
-## Como executar (Android Studio + emulador)
+Para Android com emulador aberto:
 
 ```bash
-npm install
 npx expo start --android
 ```
 
-Com um AVD já iniciado no Android Studio, o Expo abre o app no emulador.
+## Estrutura do Projeto
 
-## Scripts
+- `app/`
+- `components/`
+- `context/`
+- `hooks/`
+- `services/`
+- `utils/`
+- `types/`
+- `assets/`
 
-- `npm run start`
-- `npm run android`
-- `npm run ios`
-- `npm run web`
-- `npm run typecheck`
+## Configuração de APIs
 
-## NASA APOD
+- NASA APOD: use `DEMO_KEY` ou chave própria na tela Configurações.
+- IA:
+  - Provider: `none`, `groq` ou `gemini`
+  - API Key: preencher na tela Configurações
 
-- Chave padrão: `DEMO_KEY`
-- Para chave própria: tela Configurações > campo `NASA API Key`.
+## Link do Vídeo
+
+- https://youtube.com/seu-video-global-solution
+
+## Licença
+
+Projeto acadêmico para fins educacionais FIAP.

@@ -8,7 +8,11 @@ export function Screen({ children }: { children: ReactNode }) {
   return (
     <LinearGradient colors={["#040814", "#07122A", "#040814"]} style={styles.gradient}>
       <SafeAreaView style={styles.safe}>
-        <ScrollView contentContainerStyle={styles.content}>
+        <ScrollView
+          contentContainerStyle={styles.content}
+          showsVerticalScrollIndicator={false}
+          keyboardShouldPersistTaps="handled"
+        >
           <View>{children}</View>
         </ScrollView>
       </SafeAreaView>

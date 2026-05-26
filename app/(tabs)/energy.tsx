@@ -1,27 +1,24 @@
-import { Card, StatCard } from "@/components/Cards";
-import { MiniBarChart } from "@/components/MiniBarChart";
+ï»¿import { Card, StatCard } from "@/components/Cards";
 import { Screen } from "@/components/Screen";
 import { SectionTitle } from "@/components/SectionTitle";
+import { TelemetryLineChart } from "@/components/TelemetryLineChart";
 import { useMission } from "@/hooks/useMission";
 import { theme } from "@/utils/theme";
 
 export default function EnergyScreen() {
-  const { data } = useMission();
+  const { data, history } = useMission();
+  const labels = history.slice(-6).map((item) => new Date(item.timestamp).toLocaleTimeString().slice(0, 5));
 
   return (
     <Screen>
-      <SectionTitle title="Energia" subtitle="Bateria, geração solar e consumo" />
+      <SectionTitle title="Energia" subtitle="ProduÃ§Ã£o solar, consumo e bateria" />
       <StatCard label="Bateria" value={`${data.energy.battery}%`} tone={data.energy.battery < 30 ? "red" : "blue"} />
-      <Card title="Distribuição">
-        <MiniBarChart
-          color={theme.colors.accentRed}
-          max={10}
-          unit="kW"
-          items={[
-            { label: "Solar", value: data.energy.solarOutput },
-            { label: "Consumo", value: data.energy.consumption }
-          ]}
-        />
+      <Card title="TendÃªncia de Bateria">
+        <TelemetryLineChart labels={labels} values={history.slice(-6).map((item) => item.battery)} color={theme.colors.accentRed} />
+      </Card>
+      <Card title="MÃ©tricas Atuais">
+        <StatCard label="ProduÃ§Ã£o Solar" value={`${data.energy.solarOutput} kW`} />
+        <StatCard label="Consumo" value={`${data.energy.consumption} kW`} tone={data.energy.consumption > data.energy.solarOutput ? "red" : "blue"} />
       </Card>
     </Screen>
   );

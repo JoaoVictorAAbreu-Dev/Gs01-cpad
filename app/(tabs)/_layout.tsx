@@ -1,5 +1,4 @@
-﻿import { Image, StyleSheet, Text, View } from "react-native";
-import { Tabs } from "expo-router";
+﻿import { Tabs } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import { theme } from "@/utils/theme";
 
@@ -12,15 +11,6 @@ const iconMap: Record<string, keyof typeof Ionicons.glyphMap> = {
   settings: "settings"
 };
 
-function HeaderBrand() {
-  return (
-    <View style={styles.brandWrap}>
-      <Image source={require("@/assets/logo.png")} style={styles.brandLogo} resizeMode="contain" />
-      <Text style={styles.brandText}>Space Predictive Analytics</Text>
-    </View>
-  );
-}
-
 export default function TabsLayout() {
   return (
     <Tabs
@@ -28,7 +18,7 @@ export default function TabsLayout() {
         headerStyle: { backgroundColor: theme.colors.bgCard },
         headerTintColor: theme.colors.textPrimary,
         headerShadowVisible: false,
-        headerTitle: () => <HeaderBrand />,
+        headerTitle: "Space Predictive Analytics",
         headerTitleAlign: "left",
         tabBarStyle: {
           backgroundColor: theme.colors.bgCard,
@@ -53,9 +43,3 @@ export default function TabsLayout() {
     </Tabs>
   );
 }
-
-const styles = StyleSheet.create({
-  brandWrap: { flexDirection: "row", alignItems: "center", width: "100%" },
-  brandLogo: { width: 34, height: 34, marginRight: 8 },
-  brandText: { color: theme.colors.textPrimary, fontSize: 14, fontWeight: "700" }
-});

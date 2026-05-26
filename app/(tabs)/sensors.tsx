@@ -1,26 +1,24 @@
-import { Card, StatCard } from "@/components/Cards";
-import { MiniBarChart } from "@/components/MiniBarChart";
+ï»¿import { Card, StatCard } from "@/components/Cards";
 import { Screen } from "@/components/Screen";
 import { SectionTitle } from "@/components/SectionTitle";
+import { TelemetryLineChart } from "@/components/TelemetryLineChart";
 import { useMission } from "@/hooks/useMission";
 
 export default function SensorsScreen() {
-  const { data } = useMission();
+  const { data, history } = useMission();
+
+  const labels = history.slice(-6).map((item) => new Date(item.timestamp).toLocaleTimeString().slice(0, 5));
 
   return (
     <Screen>
-      <SectionTitle title="Sensores" subtitle="Monitoramento térmico e ambiental" />
-      <StatCard label="Temperatura" value={`${data.sensors.temperature}°C`} tone={data.sensors.temperature > 80 ? "red" : "blue"} />
-      <Card title="Leituras">
-        <MiniBarChart
-          max={120}
-          unit=""
-          items={[
-            { label: "Pressão", value: data.sensors.pressure },
-            { label: "Oxigênio", value: data.sensors.oxygen },
-            { label: "Radiação", value: data.sensors.radiation * 20 }
-          ]}
-        />
+      <SectionTitle title="Sensores" subtitle="Monitoramento tÃ©rmico, pressÃ£o e radiaÃ§Ã£o" />
+      <StatCard label="Temperatura" value={`${data.sensors.temperature}Â°C`} tone={data.sensors.temperature > 80 ? "red" : "blue"} />
+      <Card title="GrÃ¡fico de Temperatura">
+        <TelemetryLineChart labels={labels} values={history.slice(-6).map((item) => item.temperature)} />
+      </Card>
+      <Card title="Leituras Atuais">
+        <StatCard label="PressÃ£o" value={`${data.sensors.pressure} kPa`} />
+        <StatCard label="RadiaÃ§Ã£o" value={`${data.sensors.radiation} mSv`} tone={data.sensors.radiation > 3.5 ? "red" : "blue"} />
       </Card>
     </Screen>
   );
