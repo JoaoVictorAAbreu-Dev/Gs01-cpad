@@ -1,4 +1,4 @@
-import { useState } from "react";
+ï»¿import { useEffect, useState } from "react";
 import { Pressable, StyleSheet, Text } from "react-native";
 import { Card } from "@/components/Cards";
 import { Screen } from "@/components/Screen";
@@ -23,13 +23,21 @@ export default function SettingsScreen() {
   const [error, setError] = useState<string>("");
   const [success, setSuccess] = useState<string>("");
 
+  useEffect(() => {
+    setTemperatureLimit(String(settings.temperatureLimit));
+    setBatteryLimit(String(settings.batteryLimit));
+    setSignalLimit(String(settings.signalLimit));
+    setApodKey(settings.apodKey);
+    setApodEnabled(settings.apodEnabled);
+  }, [settings]);
+
   async function handleSave() {
     const t = toNumber(temperatureLimit);
     const b = toNumber(batteryLimit);
     const s = toNumber(signalLimit);
 
     if (t === null || b === null || s === null) {
-      setError("Preencha limites válidos.");
+      setError("Preencha limites vÃ¡lidos.");
       setSuccess("");
       return;
     }
@@ -49,14 +57,14 @@ export default function SettingsScreen() {
 
     await updateSettings(payload);
     setError("");
-    setSuccess("Configurações salvas.");
+    setSuccess("ConfiguraÃ§Ãµes salvas.");
   }
 
   return (
     <Screen>
-      <SectionTitle title="Configurações" subtitle="Limites de alerta e preferências" />
+      <SectionTitle title="ConfiguraÃ§Ãµes" subtitle="Limites de alerta e preferÃªncias" />
       <Card title="Regras de Alerta">
-        <SettingsInput label="Limite de Temperatura (°C)" value={temperatureLimit} onChangeText={setTemperatureLimit} />
+        <SettingsInput label="Limite de Temperatura (Â°C)" value={temperatureLimit} onChangeText={setTemperatureLimit} />
         <SettingsInput label="Limite de Bateria (%)" value={batteryLimit} onChangeText={setBatteryLimit} />
         <SettingsInput label="Limite de Sinal (%)" value={signalLimit} onChangeText={setSignalLimit} />
       </Card>

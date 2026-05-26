@@ -1,4 +1,4 @@
-import { Image, Pressable, StyleSheet, Text, View } from "react-native";
+ï»¿import { Pressable, StyleSheet, Text } from "react-native";
 import { Card, StatCard } from "@/components/Cards";
 import { Screen } from "@/components/Screen";
 import { SectionTitle } from "@/components/SectionTitle";
@@ -10,20 +10,17 @@ export default function HomeScreen() {
 
   return (
     <Screen>
-      <View style={styles.logoWrap}>
-        <Image source={require("@/assets/logo.png")} style={styles.logo} resizeMode="contain" />
-      </View>
       <SectionTitle title="Mission Control" subtitle={`${data.missionName} | ${data.orbit}`} />
       <Pressable style={styles.button} onPress={refreshTelemetry}>
         <Text style={styles.buttonText}>Atualizar Telemetria</Text>
       </Pressable>
 
-      <StatCard label="Alertas Ativos" value={String(alerts.length)} helper="Regras automáticas" tone={alerts.length > 0 ? "red" : "blue"} />
-      <StatCard label="Atualizado" value={new Date(data.updatedAt).toLocaleTimeString()} helper="Simulação em tempo real" />
+      <StatCard label="Alertas Ativos" value={String(alerts.length)} helper="Regras automÃ¡ticas" tone={alerts.length > 0 ? "red" : "blue"} />
+      <StatCard label="Atualizado" value={new Date(data.updatedAt).toLocaleTimeString()} helper="SimulaÃ§Ã£o em tempo real" />
 
       <Card title="NASA APOD">
         {loadingApod ? <Text style={styles.muted}>Carregando...</Text> : null}
-        {!loadingApod && !apod ? <Text style={styles.muted}>APOD indisponível.</Text> : null}
+        {!loadingApod && !apod ? <Text style={styles.muted}>APOD indisponÃ­vel.</Text> : null}
         {apod ? (
           <>
             <Text style={styles.title}>{apod.title}</Text>
@@ -37,8 +34,6 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
-  logoWrap: { alignItems: "center", marginBottom: 12 },
-  logo: { width: 220, height: 90 },
   button: {
     backgroundColor: theme.colors.accentRed,
     borderRadius: 10,
