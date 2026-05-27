@@ -1,18 +1,21 @@
 ﻿# Space Predictive Analytics
 
+<p align="center">
+  <img src="./assets/logo.png" alt="Space Predictive Analytics" width="280" />
+</p>
+
 ## Descrição
 
-Aplicação mobile da Global Solution 2026.1 para monitoramento inteligente de operações espaciais simuladas com dashboards analíticos, alertas automáticos, histórico de missão e apoio à decisão.
+Plataforma mobile institucional para monitoramento espacial inteligente, com telemetria simulada em tempo real, dashboards operacionais e suporte à decisão por IA.
 
 ## Integrantes
 
-- João Victor Alves de Abreu - RM: 564946 
-- Luiz Henrique Barbosa Dias - RM: 562399
+- João Victor Alves de Abreu - RM 564946
+- Luiz Henrique Barbosa Dias - RM 562399
 
+## Prints Reais
 
-## Prints das Telas
-
-Salvar os prints em `assets/screenshots/`:
+Adicionar capturas em `assets/screenshots/`:
 
 - `home.png`
 - `sensores.png`
@@ -24,17 +27,14 @@ Salvar os prints em `assets/screenshots/`:
 
 ## Funcionalidades
 
-- Navegação com Expo Router (Tabs + Stack).
-- Dashboards de Sensores, Energia e Comunicação com gráficos em tempo real.
-- Monitoramento orbital com estabilidade e drift.
-- Context API para dados da missão, alertas, histórico e configurações.
-- Persistência via AsyncStorage de limites, preferências e histórico da missão.
-- Formulário validado para configuração de limites e integrações.
-- Sistema de alertas por severidade: baixo, médio, alto e crítico.
-- Notificações locais para eventos críticos (`expo-notifications`).
-- Integração NASA APOD.
-- Interpretação inteligente da missão com IA (Groq/Gemini).
-- Interface futurista em dark mode com cards, ícones e animações suaves.
+- Mission Control Dashboard na Home com status consolidado.
+- Dashboards técnicos de Sensores, Energia e Comunicação com gráficos históricos.
+- Monitoramento de estabilidade orbital.
+- Alertas automáticos com severidade, subsistema, timestamp e recomendação operacional.
+- Persistência de configurações e histórico com AsyncStorage.
+- Integração NASA APOD (imagem/título/descrição/fallback/loading).
+- Análise inteligente com IA (Groq/Gemini).
+- Notificações locais para eventos críticos.
 
 ## Tecnologias
 
@@ -51,6 +51,22 @@ Salvar os prints em `assets/screenshots/`:
 - expo-linear-gradient
 - @expo/vector-icons
 
+## APIs Utilizadas
+
+- NASA APOD API
+- Groq API (opcional)
+- Google Gemini API (opcional)
+
+## Configuração de Ambiente
+
+Crie `.env` na raiz com:
+
+```bash
+EXPO_PUBLIC_NASA_API_KEY=sua_chave_nasa
+```
+
+A chave de IA é configurada em runtime pela tela Configurações.
+
 ## Como Executar
 
 ```bash
@@ -58,13 +74,13 @@ npm install
 npx expo start
 ```
 
-Para Android com emulador aberto:
+Android (emulador aberto):
 
 ```bash
 npx expo start --android
 ```
 
-## Estrutura do Projeto
+## Arquitetura
 
 - `app/`
 - `components/`
@@ -75,17 +91,10 @@ npx expo start --android
 - `types/`
 - `assets/`
 
-## Configuração de APIs
-
-- NASA APOD: use `DEMO_KEY` ou chave própria na tela Configurações.
-- IA:
-  - Provider: `none`, `groq` ou `gemini`
-  - API Key: preencher na tela Configurações
-
-## Link do Vídeo
+## Vídeo
 
 - https://youtube.com/seu-video-global-solution
 
 ## Licença
 
-Projeto acadêmico para fins educacionais FIAP.
+Uso acadêmico - FIAP Global Solution 2026.1.

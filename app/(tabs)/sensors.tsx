@@ -1,6 +1,6 @@
 ﻿import { Card, StatCard } from "@/components/Cards";
+import { DashboardSection } from "@/components/DashboardSection";
 import { Screen } from "@/components/Screen";
-import { SectionTitle } from "@/components/SectionTitle";
 import { TelemetryLineChart } from "@/components/TelemetryLineChart";
 import { useMission } from "@/hooks/useMission";
 
@@ -11,15 +11,17 @@ export default function SensorsScreen() {
 
   return (
     <Screen>
-      <SectionTitle title="Sensores" subtitle="Monitoramento térmico, pressão e radiação" />
-      <StatCard label="Temperatura" value={`${data.sensors.temperature}°C`} tone={data.sensors.temperature > 80 ? "red" : "blue"} />
-      <Card title="Gráfico de Temperatura">
-        <TelemetryLineChart labels={labels} values={history.slice(-6).map((item) => item.temperature)} />
-      </Card>
-      <Card title="Leituras Atuais">
-        <StatCard label="Pressão" value={`${data.sensors.pressure} kPa`} />
-        <StatCard label="Radiação" value={`${data.sensors.radiation} mSv`} tone={data.sensors.radiation > 3.5 ? "red" : "blue"} />
-      </Card>
+      <DashboardSection title="Subsystem: Sensores" subtitle="Telemetry feed térmico e radiométrico">
+        <StatCard label="Temperatura do Módulo" value={`${data.sensors.temperature} °C`} helper="Faixa operacional nominal: 20-75 °C" tone={data.sensors.temperature > 80 ? "red" : "blue"} />
+        <Card title="Histórico Térmico (Realtime)">
+          <TelemetryLineChart labels={labels} values={history.slice(-6).map((item) => item.temperature)} />
+        </Card>
+        <Card title="Leituras Técnicas">
+          <StatCard label="Pressão Interna" value={`${data.sensors.pressure} kPa`} />
+          <StatCard label="Radiação" value={`${data.sensors.radiation} Gy/h`} tone={data.sensors.radiation > 3.5 ? "red" : "blue"} />
+          <StatCard label="Oxigênio" value={`${data.sensors.oxygen}%`} />
+        </Card>
+      </DashboardSection>
     </Screen>
   );
 }

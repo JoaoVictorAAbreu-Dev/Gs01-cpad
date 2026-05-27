@@ -4,13 +4,15 @@ import { MissionSettings, TelemetryHistoryPoint } from "@/types/mission";
 const SETTINGS_KEY = "spa_settings_v2";
 const HISTORY_KEY = "spa_history_v1";
 
+const envNasaKey = process.env.EXPO_PUBLIC_NASA_API_KEY ?? "";
+
 export const defaultSettings: MissionSettings = {
   temperatureLimit: 78,
   batteryLimit: 30,
   signalLimit: 45,
   orbitalLimit: 74,
-  apodEnabled: true,
-  apodKey: "DEMO_KEY",
+  apodEnabled: envNasaKey.length > 0,
+  apodKey: envNasaKey,
   notificationsEnabled: true,
   aiProvider: "none",
   aiApiKey: ""

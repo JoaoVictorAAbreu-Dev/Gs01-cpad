@@ -1,17 +1,25 @@
 ﻿import { StyleSheet, Text, View } from "react-native";
 import { MissionAlert } from "@/types/mission";
 import { theme } from "@/utils/theme";
+import { StatusBadge } from "@/components/StatusBadge";
+
+const subsystemLabel: Record<MissionAlert["subsystem"], string> = {
+  thermal: "Thermal",
+  energy: "Energy",
+  comms: "Comms",
+  orbital: "Orbital"
+};
 
 export function AlertItem({ alert }: { alert: MissionAlert }) {
-  const tone = alert.severity;
   return (
-    <View style={[styles.card, tone === "critical" ? styles.critical : tone === "high" ? styles.high : tone === "medium" ? styles.medium : styles.low]}>
+    <View style={[styles.card, alert.severity === "critical" ? styles.critical : alert.severity === "high" ? styles.high : alert.severity === "medium" ? styles.medium : styles.low]}>
       <View style={styles.headerRow}>
         <Text style={styles.title}>{alert.title}</Text>
-        <Text style={styles.badge}>{tone.toUpperCase()}</Text>
+        <StatusBadge label={alert.severity.toUpperCase()} severity={alert.severity} />
       </View>
+      <Text style={styles.meta}>Subsystem: {subsystemLabel[alert.subsystem]} | {new Date(alert.createdAt).toLocaleString()}</Text>
       <Text style={styles.message}>{alert.message}</Text>
-      <Text style={styles.time}>{new Date(alert.createdAt).toLocaleTimeString()}</Text>
+      <Text style={styles.reco}>Ação recomendada: {alert.recommendation}</Text>
     </View>
   );
 }
@@ -23,8 +31,8 @@ const styles = StyleSheet.create({
   high: { borderColor: theme.colors.accentRed },
   medium: { borderColor: theme.colors.warning },
   low: { borderColor: theme.colors.accentBlue },
-  title: { color: theme.colors.textPrimary, fontWeight: "700" },
+  title: { color: theme.colors.textPrimary, fontWeight: "700", flex: 1, marginRight: 8 },
+  meta: { color: theme.colors.textMuted, fontSize: 11, marginBottom: 5 },
   message: { color: theme.colors.textMuted, fontSize: 12 },
-  time: { color: theme.colors.textMuted, fontSize: 11, marginTop: 6 },
-  badge: { color: theme.colors.textPrimary, fontSize: 10, fontWeight: "700", backgroundColor: theme.colors.bgSoft, paddingHorizontal: 8, paddingVertical: 3, borderRadius: 999 }
+  reco: { color: theme.colors.textPrimary, fontSize: 12, marginTop: 8 }
 });

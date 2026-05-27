@@ -72,7 +72,7 @@ export default function SettingsScreen() {
       signalLimit: s,
       orbitalLimit: o,
       apodEnabled,
-      apodKey: apodKey.trim() || "DEMO_KEY",
+      apodKey: apodKey.trim(),
       notificationsEnabled,
       aiProvider: provider,
       aiApiKey: aiApiKey.trim()
@@ -150,3 +150,4 @@ const styles = StyleSheet.create({
   providerActive: { borderColor: theme.colors.accentRed, backgroundColor: "#3A1020" },
   providerText: { color: theme.colors.textPrimary, fontSize: 12, fontWeight: "700" }
 });
+

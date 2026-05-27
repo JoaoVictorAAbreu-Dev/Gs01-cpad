@@ -40,6 +40,8 @@ export type MissionAlert = {
   title: string;
   message: string;
   severity: AlertSeverity;
+  subsystem: "thermal" | "energy" | "comms" | "orbital";
+  recommendation: string;
   createdAt: string;
 };
 
