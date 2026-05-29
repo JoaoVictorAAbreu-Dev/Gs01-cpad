@@ -224,10 +224,13 @@ npm run typecheck
 
 ---
 
-## Video de Demonstracao
+## Vídeo de Demonstração
 
-- https://youtube.com/seu-video-global-solution
+[![Assistir Demonstração](./assets/screenshots/thumb.png)](https://youtu.be/EBCHdA_TjSM)
 
+Caso a imagem não seja exibida, acesse diretamente:
+
+🔗 https://youtu.be/EBCHdA_TjSM
 ---
 
 
